@@ -1,0 +1,633 @@
+/* ==========================================================================
+   PORTAL "CRÓNICA" — style.css (rediseño completo)
+   ==========================================================================
+   Orden de lectura:
+     0) variables/reset y PLACEHOLDERS de imagen con CSS
+     1) header + temas de hoy + ticker + menú
+     2) hero
+     3) carrusel genérico
+     4..14) secciones y footer
+   ========================================================================== */
+
+/* ==========================================================================
+   0. VARIABLES Y RESET
+   ========================================================================== */
+:root {
+  --rojo-cronica: #e2231a;
+  --rojo-oscuro:  #b0150d;
+  --fucsia:       #ec0d8c;
+  --negro:        #111111;
+  --gris-oscuro:  #2b2b2b;
+  --gris-medio:   #6f6f6f;
+  --gris-card:    #ececec;
+  --gris-claro:   #f4f4f4;
+  --amarillo:     #f4e000;
+  --texto:        #1a1a1a;
+  --blanco:       #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { overflow-x: hidden; }
+
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  color: var(--texto);
+  background: var(--blanco);
+  line-height: 1.4;
+}
+img { display: block; max-width: 100%; }
+a   { text-decoration: none; color: inherit; }
+
+.contenedor {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* min-width:0 evita que los hijos de grid/flex generen scroll horizontal */
+.col-min { min-width: 0; }
+
+/* ---- PLACEHOLDERS DE IMAGEN HECHOS CON CSS (sin servicios externos) ----
+   Un .img-ph es un recuadro gris con el nombre de la foto centrado. Para
+   poner una imagen real, reemplazás el <div class="img-ph"> por <img>. */
+.img-ph {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #d7d7d7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #7a7a7a;
+  font-weight: 700;
+  font-size: 15px;
+  overflow: hidden;
+}
+.img-ph--mini  { width: 150px; height: 95px; flex-shrink: 0; font-size: 13px; }
+.img-ph--alta  { height: 380px; }
+.img-ph--media { height: 420px; }
+.img-ph--media2{ height: 460px; }
+.img-ph--tapa  { height: 560px; background: #cfcfcf; }
+.img-ph--clip,
+.img-ph--opinion { height: 360px; }
+
+/* Variante con una "X" dibujada (los huecos de la grilla de Política) */
+.img-ph--x {
+  height: 100%;
+  min-height: 150px;
+  background-color: #ececec;
+  background-image:
+    linear-gradient(to top right, transparent 49.5%, #ccc 49.7%, #ccc 50.3%, transparent 50.5%),
+    linear-gradient(to bottom right, transparent 49.5%, #ccc 49.7%, #ccc 50.3%, transparent 50.5%);
+}
+
+/* Etiqueta amarilla inclinada sobre los clips */
+.etiqueta-amarilla {
+  position: absolute;
+  bottom: 14px; left: 14px;
+  background: var(--amarillo);
+  color: var(--negro);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 10px;
+  transform: rotate(-4deg);
+  line-height: 1.1;
+  max-width: 60%;
+}
+
+/* Hashtags y títulos comunes */
+.hashtag {
+  display: inline-block;
+  color: var(--rojo-cronica);
+  font-weight: 800; font-size: 14px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.hashtag-blanco {
+  display: inline-block;
+  color: var(--blanco);
+  font-weight: 800; font-size: 16px;
+  margin-top: 8px;
+}
+.titulo-seccion {
+  font-size: 40px; font-weight: 900;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.titulo-blanco { color: var(--blanco); }
+
+/* Encabezado de sección: título a la izquierda + botón "Ver mas" a la derecha */
+.seccion-encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 35px 0 18px;
+}
+.btn-vermas {
+  background: var(--rojo-cronica);
+  color: var(--blanco);
+  font-weight: 800;
+  padding: 10px 26px;
+  border-radius: 30px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.btn-vermas:hover { background: var(--rojo-oscuro); }
+
+/* Enlaces que envuelven tarjetas/títulos hacia otras páginas */
+.card-enlace,
+.enlace-titulo-vivo { display: block; color: inherit; text-decoration: none; }
+.card-enlace:hover { opacity: 0.93; }
+
+/* ==========================================================================
+   1A. LOGO (texto)
+   ========================================================================== */
+/* LOGO: rectángulo apaisado con bordes redondeados.
+   - height fijo + overflow:hidden => el recuadro NUNCA cambia de tamaño.
+   - la imagen usa max-height/max-width con auto => se achica para entrar,
+     pero no puede empujar ni agrandar el header. */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blanco);
+  border-radius: 30px;
+  padding: 6px 18px;
+  flex-shrink: 0;
+  width: 240px;
+  height: 60px;
+  overflow: hidden;
+}
+.logo-img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.logo-nombre {
+  display: block;
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: 34px;
+  color: var(--rojo-cronica);
+  line-height: 1;
+}
+.logo-bajada {
+  display: block;
+  background: var(--negro);
+  color: var(--blanco);
+  font-size: 8px; font-weight: bold;
+  letter-spacing: 1px;
+  padding: 1px 0;
+}
+
+/* ==========================================================================
+   1B. HEADER (cinta roja)
+   ========================================================================== */
+.header { position: relative; z-index: 20; }
+.barra-superior {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--rojo-cronica);
+  border-radius: 40px;
+  padding: 10px 18px;
+  margin-top: 14px;
+}
+.btn-menu {
+  width: 56px; height: 56px;
+  border: none; border-radius: 50%;
+  background: rgba(0,0,0,0.18);
+  color: var(--blanco); font-size: 22px;
+  cursor: pointer; flex-shrink: 0;
+}
+.buscador {
+  flex: 1; display: flex;
+  background: var(--blanco);
+  border-radius: 30px; overflow: hidden;
+}
+.buscador input { flex: 1; border: none; outline: none; padding: 0 20px; font-size: 15px; }
+.buscador button { background: #d9d9d9; border: none; width: 60px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #555; }
+.buscador button:hover { background: #cdcdcd; color: #222; }
+
+/* ==========================================================================
+   1C. MENÚ DESPLEGABLE (abre del lado IZQUIERDO)
+   ========================================================================== */
+.menu-desplegable {
+  position: absolute;
+  top: 88px; left: 20px;
+  width: 360px; max-width: calc(100% - 40px);
+  background: #1c1c1c;
+  border-radius: 0 0 14px 14px;
+  padding: 18px 26px 26px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+.menu-desplegable--oculto { display: none; }
+.menu-lista { list-style: none; }
+.menu-lista li { border-bottom: 1px solid #4a4a4a; }
+.menu-lista li:last-child { border-bottom: none; }
+.menu-lista a {
+  display: block; color: var(--blanco);
+  font-style: italic; font-weight: 800; font-size: 22px;
+  padding: 18px 2px;
+}
+.menu-lista a:hover { color: #ff6b61; }
+.menu-redes { display: flex; gap: 16px; margin-top: 22px; }
+.menu-redes .red {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--blanco); color: var(--negro);
+  display: flex; align-items: center; justify-content: center;
+}
+.menu-redes .red:hover { background: #e0e0e0; }
+
+/* ==========================================================================
+   1D. TEMAS DE HOY (carrusel de botones rojos)
+   ========================================================================== */
+.temas-hoy {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+}
+.temas-etiqueta { font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+.temas-carrusel { flex: 1; }
+.temas-pista { padding-bottom: 6px; }
+
+/* Hashtag-filtro: por defecto texto rojo sin relleno.
+   Al pasar el mouse o estar activo => pastilla roja rellena (como #GASPI). */
+.tema-item {
+  flex: 0 0 auto;
+  text-align: center;
+  background: transparent;
+  color: var(--rojo-cronica);
+  font-weight: 800;
+  font-style: italic;
+  padding: 10px 20px;
+  border-radius: 30px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.tema-item:hover,
+.tema-item.activo {
+  background: var(--rojo-cronica);
+  color: var(--blanco);
+}
+
+/* Mensaje cuando un filtro no tiene noticias */
+.instantes-vacio {
+  color: var(--gris-medio);
+  font-style: italic;
+  padding: 18px 4px;
+}
+
+/* ==========================================================================
+   1E. TICKER
+   ========================================================================== */
+.ticker { background: var(--negro); color: var(--blanco); }
+.ticker-fila {
+  display: flex; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px;
+  padding-top: 18px; padding-bottom: 18px;
+}
+.ticker-fila span { font-style: italic; font-weight: bold; font-size: 17px; }
+
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 25px;
+}
+.hero-vivo { background: var(--rojo-cronica); border-radius: 16px; padding: 10px; min-width: 0; }
+.hero-vivo h2 {
+  background: var(--negro);
+  color: var(--blanco);
+  font-size: 30px;
+  padding: 16px 22px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-vivo h2 span { color: var(--blanco); }
+.punto-vivo {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--rojo-cronica); display: inline-block;
+}
+.hero-vivo .video { position: relative; border-radius: 8px; overflow: hidden; }
+.etiqueta-live {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  background: var(--negro); color: var(--blanco);
+  font-size: 13px; font-weight: bold;
+  padding: 4px 10px; border-radius: 6px;
+}
+.etiqueta-live::before { content: "● "; color: var(--rojo-cronica); }
+
+.hero-instantes { min-width: 0; }
+.hero-instantes h2 { font-size: 34px; font-weight: 900; margin-bottom: 18px; }
+.instantes-pista {
+  flex-direction: column;
+  max-height: 460px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Mini-tarjeta horizontal reutilizable */
+.item-noticia { display: flex; gap: 16px; }
+/* Cuando el filtro la oculta, gana sobre el display:flex de arriba */
+.item-noticia[hidden] { display: none; }
+.item-noticia h3 { font-size: 19px; }
+.item-noticia .meta { display: flex; align-items: center; gap: 16px; }
+.item-noticia .hora { color: #777; font-style: italic; font-size: 14px; }
+.item-noticia--ancho { flex: 0 0 440px; }
+
+/* ==========================================================================
+   3. CARRUSEL GENÉRICO
+   ========================================================================== */
+.carrusel { position: relative; }
+.carrusel-pista {
+  display: flex; gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 6px 4px 18px;
+  scrollbar-width: none;
+}
+.carrusel-pista::-webkit-scrollbar { display: none; }
+.carrusel-flecha {
+  position: absolute; top: 42%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border: none; border-radius: 50%;
+  background: rgba(0,0,0,0.65); color: var(--blanco);
+  font-size: 24px; cursor: pointer; z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+}
+.carrusel-flecha:hover { background: var(--rojo-cronica); }
+.carrusel-flecha.anterior  { left: -8px; }
+.carrusel-flecha.siguiente { right: -8px; }
+.carrusel--vertical .carrusel-flecha.anterior  { top: 6px;  left: 50%; transform: translateX(-50%); }
+.carrusel--vertical .carrusel-flecha.siguiente { top: auto; bottom: 6px; right: 50%; transform: translateX(50%); }
+
+/* Tarjeta estándar */
+/* Tarjeta estilo "diario": fondo blanco, imagen arriba, título, hashtag rojo
+   y una línea fina abajo separando del resto (como en las fotos). */
+.card { flex: 0 0 300px; background: var(--blanco); overflow: hidden; }
+.card .img-ph { border-radius: 6px; }
+.card .card-cuerpo { padding: 12px 4px 16px; border-bottom: 2px solid #e3e3e3; }
+.card h3 { font-size: 18px; line-height: 1.3; margin-bottom: 10px; }
+/* Variante oscura (Semana policial): caja negra con texto blanco */
+.card--oscura { background: var(--negro); border-radius: 10px; }
+.card--oscura .img-ph { border-radius: 0; }
+.card--oscura .card-cuerpo { padding: 14px; border-bottom: none; }
+.card--oscura h3 { color: var(--blanco); }
+
+/* ==========================================================================
+   4. TAPAS DE LA SEMANA
+   ========================================================================== */
+.bloque-rojo { background: var(--rojo-cronica); padding: 30px 0; margin-top: 35px; }
+.bloque-rojo .titulo-seccion { margin: 0 0 18px; }
+.tapa { flex: 0 0 330px; background: var(--blanco); border-radius: 8px; overflow: hidden; }
+
+/* ==========================================================================
+   5. POLICIALES + CLIPS
+   ========================================================================== */
+.franja-doble { background: var(--rojo-cronica); margin-top: 35px; }
+.franja-doble-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  padding-top: 16px; padding-bottom: 16px;
+}
+.franja-doble-grid h2 { font-size: 30px; font-weight: 900; }
+.franja-doble-der { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+
+.policiales-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-top: 20px;
+}
+.destacada-oscura { background: var(--negro); border-radius: 14px; overflow: hidden; }
+.destacada-oscura .cuerpo { padding: 18px 20px; }
+.destacada-oscura h3 { color: var(--blanco); font-size: 30px; margin-bottom: 6px; }
+.clips-col { overflow: hidden; }
+
+/* Tarjeta de clip (imagen + pie rojo) */
+.card-clip { flex: 0 0 300px; border-radius: 10px; overflow: hidden; }
+.card-cuerpo--rojo { background: var(--rojo-cronica); color: var(--blanco); padding: 16px; }
+.card-cuerpo--rojo h3 { color: var(--blanco); font-size: 20px; }
+
+/* ==========================================================================
+   6 / 9 / 12. FILA DE TAGS
+   ========================================================================== */
+.fila-tags {
+  display: flex; gap: 48px;
+  overflow-x: auto; padding-bottom: 18px;
+  scrollbar-width: none;
+}
+.fila-tags::-webkit-scrollbar { display: none; }
+.fila-tags a { font-weight: 800; white-space: nowrap; letter-spacing: 1px; cursor: pointer; transition: color 0.15s; }
+.fila-tags a:hover { color: var(--rojo-cronica); }
+.fila-tags--mundo { margin-top: 20px; }
+
+/* ==========================================================================
+   7. POLÍTICA
+   ========================================================================== */
+.politica-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.grilla-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 18px;
+}
+.mini-card {
+  background: var(--blanco);
+  display: flex; flex-direction: column;
+}
+.mini-card .img-ph { height: 150px; margin-bottom: 10px; border-radius: 6px; }
+.mini-card h4 { font-size: 16px; margin-bottom: 10px; line-height: 1.3; }
+.mini-card .hashtag { margin-top: auto; padding-bottom: 10px; border-bottom: 2px solid #e3e3e3; }
+
+/* ==========================================================================
+   9. SOCIEDAD / DIARIO SHOW
+   ========================================================================== */
+.sociedad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+/* Bloque "Más en Diario Show" (cabecera fucsia + destacada + item) */
+.diarioshow-cabecera {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+  background: var(--fucsia);
+  padding: 12px 16px;
+  border-radius: 8px 8px 0 0;
+}
+.diarioshow-cabecera span { color: var(--blanco); font-weight: 900; font-size: 22px; }
+.diarioshow-destacada .img-ph--media2 { position: relative; border-radius: 0; }
+.diarioshow-destacada h3 { font-size: 22px; padding: 12px 6px; }
+.diarioshow-item { margin-top: 8px; }
+.diarioshow-item .img-ph--mini { border-radius: 6px; }
+.diarioshow-item h3 { font-size: 17px; margin-top: 6px; }
+
+/* Etiqueta amarilla "LA PAVADA" */
+.etiqueta-pavada {
+  display: inline-block;
+  background: #f3c14b;
+  color: #4a3a10;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+.img-ph .etiqueta-pavada { position: absolute; bottom: 12px; left: 12px; }
+
+/* Título de bloque interno (ej: "Social Noticias") */
+.titulo-bloque { font-size: 26px; font-weight: 900; margin-bottom: 16px; }
+
+/* ==========================================================================
+   10. OPINIÓN - CRÓNICA EN VIVO
+   ========================================================================== */
+.opinion-vivo { background: var(--rojo-cronica); padding: 30px 0; margin-top: 35px; }
+.opinion-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.opinion-cabecera .titulo-seccion { margin: 0; }
+.opinion-enlaces { list-style: none; }
+.opinion-enlaces a { color: var(--blanco); font-weight: 800; text-decoration: underline; }
+.opinion-enlaces li { margin: 4px 0; }
+.card-opinion { flex: 0 0 420px; border-radius: 10px; overflow: hidden; background: var(--rojo-cronica); }
+
+/* ==========================================================================
+   11. RELAX (solo la 1ª tarjeta crece; el resto no se estira)
+   ========================================================================== */
+.pista-relax { align-items: flex-start; }
+
+/* ==========================================================================
+   12. MUNDO
+   ========================================================================== */
+.mundo-cabecera { background: var(--negro); margin-top: 35px; }
+.mundo-cabecera .seccion-encabezado { margin: 0; padding-top: 18px; padding-bottom: 18px; }
+.mundo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 20px; align-items: start; }
+
+/* Lista gris de la derecha (titulares con hashtag rojo en línea) */
+.mundo-lista { background: var(--gris-claro); border-radius: 8px; padding: 4px 22px; }
+.mundo-lista-item {
+  display: block;
+  padding: 20px 0;
+  border-bottom: 1px solid #d5d5d5;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--texto);
+}
+.mundo-lista-item:last-child { border-bottom: none; }
+.hashtag-inline { color: var(--rojo-cronica); font-weight: 900; }
+
+/* Título de sub-sección (más chico que el de sección) */
+.titulo-sub { font-size: 28px; font-weight: 900; text-transform: uppercase; margin: 35px 0 18px; }
+
+/* ==========================================================================
+   13. MEDIOS VINCULADOS
+   ========================================================================== */
+/* ==========================================================================
+   13. MEDIOS VINCULADOS
+   ========================================================================== */
+.medios { background: var(--negro); padding: 30px 0; margin-top: 35px; }
+.medios-titulo { font-style: italic; margin-bottom: 20px; }
+
+/* La estructura base de la etiqueta (sin el color de fondo) */
+.pill {
+  flex: 0 0 auto;
+  min-width: 300px; height: 80px;
+  border-radius: 45px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px 26px;
+  overflow: hidden;
+  transition: filter 0.2s, background 0.2s;
+}
+
+.pill-logo {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Colores específicos basados en las imágenes aportadas */
+.pill--fmq { background: #3f3f3f; }
+.pill--fmq:hover { background: #4f4f4f; }
+
+.pill--depo { background: #12d298; }
+.pill--depo:hover { background: #15e8a8; }
+
+.pill--diarioshow { background: #f9158b; }
+.pill--diarioshow:hover { background: #ff2b9a; }
+
+.pill--cm { background: linear-gradient(90deg, #483493 0%, #2270bd 100%); }
+.pill--cm:hover { filter: brightness(1.15); }
+
+/* Por si agregás otros medios sin color definido */
+.pill--generico { background: #2b2b2b; }
+.pill--generico:hover { background: #3a3a3a; }
+/* ==========================================================================
+   14. FOOTER
+   ========================================================================== */
+.footer-top { background: var(--gris-claro); padding: 22px 0; border-top: 4px solid var(--negro); }
+.footer-top-fila { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.logo--footer { width: 260px; height: 72px; }
+.footer-seguinos { display: flex; align-items: center; gap: 18px; }
+.footer-seguinos > span { color: var(--rojo-cronica); font-weight: 900; font-size: 22px; }
+.footer-redes { display: flex; gap: 12px; }
+.red-roja {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--rojo-cronica); color: var(--blanco);
+  display: flex; align-items: center; justify-content: center;
+}
+.red-roja:hover { background: var(--rojo-oscuro); }
+
+.footer-principal { background: var(--gris-oscuro); color: var(--blanco); padding: 40px 0; }
+.footer-cols {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+.footer-tematicas h4 { font-size: 18px; margin-bottom: 16px; }
+.tematicas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+.footer-tematicas ul, .footer-medios { list-style: none; }
+.footer-tematicas li, .footer-medios li { margin-bottom: 10px; position: relative; padding-left: 16px; }
+.footer-tematicas li::before, .footer-medios li::before { content: "•"; position: absolute; left: 0; }
+.footer-principal a { color: var(--blanco); }
+.footer-medios a { text-decoration: underline; }
+.footer-principal a:hover { color: #ddd; }
+
+.footer-legal {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr;
+  gap: 24px;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid #555;
+  font-size: 12px;
+  color: #cfcfcf;
+}
+.footer-grupo strong { font-size: 20px; }
+.footer-datos p { margin-bottom: 10px; line-height: 1.5; }
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero,
+  .policiales-grid,
+  .politica-grid,
+  .sociedad-grid,
+  .mundo-grid,
+  .franja-doble-grid { grid-template-columns: 1fr; }
+  .grilla-2x2 { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .titulo-seccion { font-size: 28px; }
+  .footer-cols { grid-template-columns: 1fr; }
+  .footer-legal { grid-template-columns: 1fr 1fr; }
+  .tematicas-grid { grid-template-columns: 1fr; }
+}
