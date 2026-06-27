@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--
+  ============================================================================
+  PÁGINA DE ARTÍCULO: "NOTICIA ESVÁSTICA"
+  ============================================================================
+  ARCHIVO: noticia-esvastica.html  ->  SOLO la estructura.
+    - Estilos en  style-noticia.css   (el MISMO que usa noticia.html)
+    - Lógica  en  script-noticia.js   (carrusel de relacionadas + menú ☰)
+  Los tres archivos deben estar en la MISMA carpeta.
+
+  Se enlaza desde la home: tarjeta "esvástica" de la grilla "Social Noticias".
+
+  NOTA SOBRE LAS IMÁGENES:
+    Igual que en noticia.html, las fotos van como PLACEHOLDERS (.media-hueco /
+    .img-ph). Donde tengas la foto real, reemplazá el <div ...> por:
+        <img src="imagenes/NOMBRE.png" alt="texto descriptivo">
+    Te dejé en cada lugar un comentario con el nombre sugerido.
+  ============================================================================
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tenía baldosas con esvásticas en su casa: lo imputan por vender uniformes militares — Crónica</title>
+  <link rel="stylesheet" href="style-noticia.css" />
+</head>
+
+<body>
+
+  <!-- =======================================================================
+       1. HEADER (cinta roja) + SUB-HEADER (cinta gris con la fecha)
+       ======================================================================= -->
+  <header class="header">
+    <div class="contenedor barra-superior">
+      <button class="btn-menu" id="btnMenu" aria-label="Abrir menú">&#9776;</button>
+
+      <!-- LOGO: rectángulo apaisado con tu imagen adentro. Lleva a la home. -->
+      <a href="index.html" class="logo">
+        <img src="imagenes/logo.png" alt="Crónica" class="logo-img" />
+      </a>
+
+      <form class="buscador" onsubmit="return false;">
+        <input type="text" placeholder="Buscar..." />
+        <button type="submit" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Menú desplegable (abre del lado izquierdo, igual que en las otras páginas) -->
+    <nav class="menu-desplegable menu-desplegable--oculto" id="menuDesplegable" aria-label="Menú">
+      <ul class="menu-lista">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="#">Policiales</a></li>
+        <li><a href="#">Política</a></li>
+        <li><a href="#">Paranormal</a></li>
+        <li><a href="#">Salud</a></li>
+        <li><a href="#">Tecnología</a></li>
+        <li><a href="#">Opinión</a></li>
+        <li><a href="#">Sociedad</a></li>
+        <li><a href="#">Cine y Series</a></li>
+        <li><a href="#">Números y Destino</a></li>
+        <li><a href="#">Cocina</a></li>
+        <li><a href="#">Cosa de Locos</a></li>
+        <li><a href="#">Viajes y Escapadas</a></li>
+      </ul>
+      <div class="menu-redes">
+        <a href="#" class="red" aria-label="X"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+        <a href="#" class="red" aria-label="Instagram"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 4.38a5.3 5.3 0 1 0 0 10.6 5.3 5.3 0 0 0 0-10.6Zm0 1.62a3.68 3.68 0 1 1 0 7.36 3.68 3.68 0 0 1 0-7.36Zm5.5-2.86a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48Z"/></svg></a>
+        <a href="#" class="red" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.85 12 3.85 12 3.85s-7.5 0-9.4.52A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.52 9.4.52 9.4.52s7.5 0 9.4-.52a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5ZM9.6 15.5v-7l6.2 3.5-6.2 3.5Z"/></svg></a>
+        <a href="#" class="red" aria-label="TikTok"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16.5 2h-3v13.5a3 3 0 1 1-2.4-2.94V9.5A6 6 0 1 0 16.5 15.5V8.9a7.5 7.5 0 0 0 4.5 1.5V7.4a4.5 4.5 0 0 1-4.5-4.5V2Z"/></svg></a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Sub-header gris con la fecha -->
+  <div class="subheader-fecha">
+    <div class="contenedor">
+      <span>Lunes, 15 de Junio de 2026</span>
+    </div>
+  </div>
+
+  <!-- Etiqueta de categoría (roja, pegada al borde izquierdo) -->
+  <div class="categoria-noticia"><span>Sociedad</span></div>
+
+  <!-- =======================================================================
+       2. ENCABEZADO DEL ARTÍCULO + COLUMNA DE REDES
+       -----------------------------------------------------------------------
+       Layout en 2 columnas (CSS Grid): contenido (1fr) y redes (ancho fijo).
+       Las redes NO van fijas: viajan con el flujo y se van hacia arriba al
+       hacer scroll (no llevan position:fixed/sticky).
+       ======================================================================= -->
+  <div class="contenedor articulo-grid">
+
+    <!-- Columna principal: TODO el artículo -->
+    <main class="articulo">
+
+      <!-- Título y bajada -->
+      <header class="articulo-encabezado">
+        <h1>Tenía baldosas con esvásticas en su casa: lo imputan por vender uniformes militares en redes sociales</h1>
+        <p class="bajada">Un allanamiento en la localidad de Gerli reveló que el acusado no solo comercializaba material nazi, sino que también decoró su vivienda con insignias de la organización.</p>
+      </header>
+
+      <!-- 3. CUERPO DE LA NOTICIA -->
+
+      <!-- Imagen/video principal (marco rojo). -->
+      <!-- Reemplazá por tu imagen, p. ej.: <img src="imagenes/sociedad 4.png" alt="..."> -->
+      <figure class="media-intercalada">
+        <img src="imagenes/cronica en vivo.png" alt="class img-ph--alta">
+      </figure>
+
+      <p>La Justicia imputó a Diego Fernando Martínez tras un allanamiento en la localidad bonaerense de Gerli, donde se descubrió que comercializaba uniformes y accesorios militares vinculados al nazismo a través de una plataforma de internet.</p>
+
+      <p>El hallazgo que más llamó la atención de las autoridades ocurrió durante el operativo, al constatar que el pasillo de ingreso de la vivienda del sospechoso estaba revestido con baldosas que exhibían insignias esvásticas.</p>
+
+      <!-- Imagen intercalada: el collage (campera / maniquí / bandera) ES UNA sola imagen. -->
+      <!-- Reemplazá por tu collage, p. ej.: <img src="imagenes/sociedad 4.png" alt="..."> -->
+      <figure class="media-intercalada">
+        <img src="imagenes/sociedad 4.png" alt="">
+        <figcaption>Parte del material secuestrado, publicado en la plataforma de venta.</figcaption>
+      </figure>
+
+      <h2>El origen de la investigación digital</h2>
+
+      <p>La causa judicial comenzó el pasado 8 de abril, luego de que se detectara una publicación en la sección de comercio de la red social.</p>
+
+      <p>El vendedor utilizaba el perfil falso de <strong>Fernando Martinsohn</strong>, el cual tenía como foto de portada una estrella militar de <strong>Estados Unidos.</strong></p>
+
+      <p>Aunque las publicaciones iniciales situaban los artículos en la localidad de <strong>Sarandí</strong>, las tareas de inteligencia criminal permitieron localizar el verdadero domicilio del involucrado.</p>
+
+      <p>El operativo de vigilancia y localización estuvo a cargo del personal de la <strong>Superintendencia de Investigaciones de Delitos Complejos y Crimen Organizado</strong>, específicamente a través de la <strong>Dirección de Contraterrorismo.</strong></p>
+
+      <p>Tras reunir los elementos de prueba necesarios, el <strong>Juzgado Federal de Primera Instancia</strong> emitió la orden de registro para la propiedad.</p>
+
+      <h2>Armamento, simbología y hallazgos en la propiedad</h2>
+
+      <p>El procedimiento arrojó un resultado positivo con el secuestro de una gran cantidad de material bélico e ideológico de interés para la causa.</p>
+
+      <p>Entre los objetos incautados se detallaron revólveres, pistolas, piezas de armas, municiones, cascos, medallas, gorras, cintos, dagas y chaquetas militares con insignias esvásticas, además de retazos de tela con el mismo emblema y un libro de <strong>Adolf Hitler.</strong> También se retuvieron dos teléfonos celulares y un disco sólido para sus posteriores peritajes.</p>
+
+      <p>Las autoridades policiales plasmaron en el acta oficial el asombro ante el diseño arquitectónico de la entrada de la vivienda.</p>
+
+      <!-- Cita: solo el entrecomillado va en itálica (<em>); la atribución, normal. -->
+      <p><em>"Al cierre del parte policial se dejó constancia que para los efectivos resultó llamativo que en el pasillo de ingreso de la propiedad había colocado pisos de baldosas con insignias esvásticas"</em>, señalaron las fuentes del caso respecto al estado del inmueble del imputado.</p>
+
+      <!-- 4. ETIQUETAS (tags) -->
+      <section class="tags">
+        <p class="tags-titulo">Esta nota habla de:</p>
+        <div class="tags-lista">
+          <a href="#" class="pill-tag">#ESVÁSTICA</a>
+          <a href="#" class="pill-tag">#UNIFORMES</a>
+          <a href="#" class="pill-tag">#REDES SOCIALES</a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Columna lateral: REDES SOCIALES (NO fijas; viajan con el flujo) -->
+    <aside class="redes-laterales" aria-label="Compartir en redes">
+      <a href="#" class="red-icono" aria-label="Compartir en Facebook">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.46H15.2c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.9h-2.34V22c4.78-.79 8.43-4.94 8.43-9.94Z"/></svg>
+      </a>
+      <a href="#" class="red-icono" aria-label="Compartir en X">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>
+      </a>
+      <a href="#" class="red-icono" aria-label="Compartir en LinkedIn">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14ZM7.12 20.45H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+      </a>
+      <a href="#" class="red-icono" aria-label="Compartir por Email">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M2 4h20a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm10 8.13L4.4 6.5h15.2L12 12.13ZM3 7.87V18h18V7.87l-9 6.7-9-6.7Z"/></svg>
+      </a>
+      <a href="#" class="red-icono" aria-label="Compartir por WhatsApp">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.78 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm5.8 14.13c-.24.69-1.42 1.32-1.95 1.36-.5.04-.96.27-3.23-.67-2.72-1.13-4.45-3.92-4.59-4.1-.13-.18-1.1-1.46-1.1-2.79 0-1.33.7-1.98.94-2.25.25-.27.54-.34.72-.34.18 0 .36 0 .52.01.17.01.39-.06.61.47.24.57.81 1.97.88 2.11.07.14.12.3.02.48-.09.18-.14.3-.27.46-.14.16-.29.36-.41.48-.14.14-.28.29-.12.57.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.27.14.43.12.59-.07.16-.18.68-.79.86-1.06.18-.27.36-.23.61-.14.25.09 1.6.76 1.87.9.27.13.45.2.52.31.07.11.07.64-.17 1.33Z"/></svg>
+      </a>
+    </aside>
+
+  </div>
+
+  <!-- =======================================================================
+       5. ÚLTIMAS NOTICIAS RELACIONADAS (CARRUSEL controlado por JS)
+       ======================================================================= -->
+  <section class="contenedor relacionadas">
+    <div class="relacionadas-encabezado">
+      <h2>Últimas noticias de #ESVÁSTICA</h2>
+      <a href="#" class="btn-vermas">Ver mas</a>
+    </div>
+
+    <div class="carrusel">
+      <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+      <div class="carrusel-pista">
+        <article class="card">
+          <!-- Reemplazá por: <img src="imagenes/sociedad 2.png" alt="..."> -->
+          <img src="imagenes/sociedad 2.png" alt="">
+          <div class="card-cuerpo">
+            <h3><strong>Pronóstico del tiempo:</strong> vuelven las lluvias y tormentas a Buenos Aires, ¿en qué fecha?</h3>
+          </div>
+        </article>
+        <article class="card">
+          <!-- Reemplazá por: <img src="imagenes/sociedad 3.png" alt="..."> -->
+          <img src="imagenes/sociedad 3.png" alt="">
+          <div class="card-cuerpo">
+            <h3><strong>VIDEO</strong> La expedición científica del CONICET que paralizó a millones de argentinos vuelve al mar profundo con una nueva misión</h3>
+          </div>
+        </article>
+        <article class="card">
+          <!-- Reemplazá por tu foto del operativo (la del personal de la DDI) -->
+          <img src="imagenes/policial 9.webp" alt="">
+          <div class="card-cuerpo">
+            <h3><strong>ABERRANTE</strong> Un colectivero habría violado a una pasajera de 15 años dentro del transporte y terminó preso</h3>
+          </div>
+        </article>
+        <article class="card">
+          <img src="imagenes/policial 5.png" alt="">
+          <div class="card-cuerpo">
+            <h3><strong>CASO</strong> Detienen a un hombre por comercializar simbología nazi a través de las redes sociales</h3>
+          </div>
+        </article>
+      </div>
+      <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+    </div>
+  </section>
+
+
+  <!-- =======================================================================
+       FOOTER NO-HOME (logo + ¡SEGUINOS! + temáticas + medios + datos)
+       El mismo que usás en noticia.html y en la home.
+       ======================================================================= -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="contenedor footer-top-fila">
+        <a href="index.html" class="logo logo--footer">
+          <img src="imagenes/logo.png" alt="Crónica" class="logo-img" />
+        </a>
+        <div class="footer-seguinos">
+          <span>¡SEGUINOS!</span>
+          <div class="footer-redes">
+            <a href="#" class="red-roja" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+            <a href="#" class="red-roja" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 4.38a5.3 5.3 0 1 0 0 10.6 5.3 5.3 0 0 0 0-10.6Zm0 1.62a3.68 3.68 0 1 1 0 7.36 3.68 3.68 0 0 1 0-7.36Zm5.5-2.86a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48Z"/></svg></a>
+            <a href="#" class="red-roja" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.85 12 3.85 12 3.85s-7.5 0-9.4.52A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.52 9.4.52 9.4.52s7.5 0 9.4-.52a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5ZM9.6 15.5v-7l6.2 3.5-6.2 3.5Z"/></svg></a>
+            <a href="#" class="red-roja" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16.5 2h-3v13.5a3 3 0 1 1-2.4-2.94V9.5A6 6 0 1 0 16.5 15.5V8.9a7.5 7.5 0 0 0 4.5 1.5V7.4a4.5 4.5 0 0 1-4.5-4.5V2Z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-principal">
+      <div class="contenedor footer-cols">
+        <div class="footer-tematicas">
+          <h4>Temáticas</h4>
+          <div class="tematicas-grid">
+            <ul>
+              <li><a href="#">Policiales</a></li>
+              <li><a href="#">Política</a></li>
+              <li><a href="#">Paranormal</a></li>
+              <li><a href="#">Salud</a></li>
+              <li><a href="#">Tecnología</a></li>
+              <li><a href="#">Opinión</a></li>
+              <li><a href="#">Sociedad</a></li>
+              <li><a href="#">Cine y Series</a></li>
+              <li><a href="#">Números y Destino</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">Cocina</a></li>
+              <li><a href="#">Cosa de Locos</a></li>
+              <li><a href="#">Viajes y Escapadas</a></li>
+              <li><a href="#">Videos</a></li>
+              <li><a href="#">Horóscopo</a></li>
+              <li><a href="#">Santoral</a></li>
+              <li><a href="#">Efemérides</a></li>
+              <li><a href="#">Loterías y Quiniela</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="footer-medios">
+          <li><a href="#">Crónica</a></li>
+          <li><a href="#">Crónica TV</a></li>
+          <li><a href="#">Diario Show</a></li>
+          <li><a href="#">BAE Negocios</a></li>
+          <li><a href="#">Revista Veititrés</a></li>
+          <li><a href="#">La Opinión Austral</a></li>
+          <li><a href="#">FMQ</a></li>
+          <li><a href="#">CM Canal de la Música</a></li>
+          <li><a href="#">Canal 10 de Mar del Plata</a></li>
+          <li><a href="#">Diario Crónica</a></li>
+          <li><a href="#">Mendoza Today</a></li>
+        </ul>
+      </div>
+
+      <div class="contenedor footer-legal">
+        <div class="footer-grupo"><strong>Grupo Crónica</strong></div>
+        <div class="footer-datos">
+          <p>Editorial Aconcagua Argentina S.A. es licenciataria del Diario Crónica.<br>
+             Director: Marcelo Carbone<br>
+             Registro de Propiedad Intelectual Nro. 06186348<br>
+             Copyright 2026 - Grupo Crónica - Todos los derechos reservados<br>
+             Edición N° 6.622 - 21/06/2026</p>
+        </div>
+        <div class="footer-datos">
+          <p><strong>Redacción</strong><br>
+             Director periodístico: Florencia Guerrero<br>
+             Av. Juan de Garay 140, Capital Federal, Argentina<br>
+             Tel: +54 11 5263-8650<br>
+             cronicaweb@grupocronica.com.ar</p>
+        </div>
+        <div class="footer-datos">
+          <p><strong>Departamento Comercial</strong><br>
+             Tel: +54 11 4417-6704<br>
+             departamentocomercial@grupocronica.com.ar<br>
+             Mediakit</p>
+          <p><strong>Contacto</strong><br>
+             Términos y condiciones<br>
+             Políticas de privacidad</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script-noticia.js"></script>
+</body>
+</html>

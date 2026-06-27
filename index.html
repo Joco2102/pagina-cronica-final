@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crónica — Portal de Noticias</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- =======================================================================
+       1. HEADER (menú izq · logo · buscador der)
+       ======================================================================= -->
+  <header class="header">
+    <div class="contenedor barra-superior">
+      <button class="btn-menu" id="btnMenu" aria-label="Abrir menú">&#9776;</button>
+
+      <a href="index.html" class="logo">
+        <img src="imagenes/logo.png" alt="Crónica" class="logo-img" />
+      </a>
+
+      <form class="buscador" onsubmit="return false;">
+        <input type="text" placeholder="Buscar..." />
+        <button type="submit" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </form>
+    </div>
+
+    <nav class="menu-desplegable menu-desplegable--oculto" id="menuDesplegable" aria-label="Menú principal">
+      <ul class="menu-lista">
+        <li><a href="#">Policiales</a></li>
+        <li><a href="#">Política</a></li>
+        <li><a href="#">Paranormal</a></li>
+        <li><a href="#">Salud</a></li>
+        <li><a href="#">Tecnología</a></li>
+        <li><a href="#">Opinión</a></li>
+        <li><a href="#">Sociedad</a></li>
+        <li><a href="#">Cine y Series</a></li>
+        <li><a href="#">Números y Destino</a></li>
+        <li><a href="#">Cocina</a></li>
+        <li><a href="#">Cosa de Locos</a></li>
+        <li><a href="#">Viajes y Escapadas</a></li>
+      </ul>
+      <div class="menu-redes">
+        <a href="#" class="red" aria-label="X">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg>
+        </a>
+        <a href="#" class="red" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 4.38a5.3 5.3 0 1 0 0 10.6 5.3 5.3 0 0 0 0-10.6Zm0 1.62a3.68 3.68 0 1 1 0 7.36 3.68 3.68 0 0 1 0-7.36Zm5.5-2.86a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48Z"/></svg>
+        </a>
+        <a href="#" class="red" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.85 12 3.85 12 3.85s-7.5 0-9.4.52A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.52 9.4.52 9.4.52s7.5 0 9.4-.52a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5ZM9.6 15.5v-7l6.2 3.5-6.2 3.5Z"/></svg>
+        </a>
+        <a href="#" class="red" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16.5 2h-3v13.5a3 3 0 1 1-2.4-2.94V9.5A6 6 0 1 0 16.5 15.5V8.9a7.5 7.5 0 0 0 4.5 1.5V7.4a4.5 4.5 0 0 1-4.5-4.5V2Z"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+<!-- 1B. TEMAS DE HOY (hashtags-filtro). SIN flechas, con scroll libre -->
+ <nav class="contenedor temas-hoy">
+    <span class="temas-etiqueta">TEMAS DE HOY :</span>
+    <div class="carrusel temas-carrusel">
+      <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+
+      <div class="carrusel-pista temas-pista">
+        <a href="#" class="tema-item" data-filtro="GASPI">#GASPI</a>
+        <a href="#" class="tema-item" data-filtro="ADORNI">#Adorni</a>
+        <a href="#" class="tema-item" data-filtro="JUBILACION">#Jubilación</a>
+        <a href="#" class="tema-item" data-filtro="ELECCIONES">#Elecciones</a>
+        <a href="#" class="tema-item" data-filtro="MUNDIAL">#Mundial</a>
+        <a href="#" class="tema-item" data-filtro="SALARIOS">#Salarios</a>
+        <a href="#" class="tema-item" data-filtro="TARIFAS">#Tarifas</a>
+        <a href="#" class="tema-item" data-filtro="RECLAMO">#Reclamo</a>
+        <a href="#" class="tema-item" data-filtro="DOLAR">#Dólar</a>
+        <a href="#" class="tema-item" data-filtro="CLIMA">#Clima</a>
+        <a href="#" class="tema-item" data-filtro="MUNDIAL2">#Mundial 2026</a>
+        <a href="#" class="tema-item" data-filtro="CONICET">#Conicet</a>
+        <a href="#" class="tema-item" data-filtro="POLICIALES">#Policiales</a>
+      </div>
+
+      <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+    </div>
+  </nav>
+
+  <!-- 1C. TICKER FINANCIERO -->
+  <div class="ticker">
+    <div class="contenedor ticker-fila">
+      <span>14° Buenos Aires</span>
+      <span>Dólar Oficial: $1464,95</span>
+      <span>Blue: $1450,00</span>
+      <span>Dólar CCL: $1508,42</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- 2. HERO -->
+    <section class="contenedor">
+      <div class="hero">
+        <div class="hero-vivo">
+          <a href="en-vivo.html" class="enlace-titulo-vivo">
+            <h2>ÚLTIMAS NOTICIAS - <span>EN VIVO</span> <i class="punto-vivo"></i></h2>
+          </a>
+          <div class="video">
+            <span class="etiqueta-live">LIVE</span>
+            <img src="imagenes/imagen 1.png" alt="" class="img-ph img-ph--alta">
+          </div>
+        </div>
+
+        <div class="hero-instantes">
+          <h2>HACE INSTANTES - EN VIVO</h2>
+          <div class="carrusel carrusel--vertical">
+            <button class="carrusel-flecha anterior" aria-label="Subir">&#8593;</button>
+            <div class="carrusel-pista instantes-pista">
+              <article class="item-noticia" data-tags="SALARIOS MARCHA-UNIVERSITARIA">
+                <img src="imagenes/imagen 2.png" alt="" class="img-ph img-ph--mini">
+                <div>
+                  <h3>Paritaria universitaria: el Gobierno y los gremios llegaron a un acuerdo por aumento para docentes y no docentes</h3>
+                  <div class="meta"><span class="hashtag">#SALARIOS</span><span class="hora">Hace 12 minutos</span></div>
+                </div>
+              </article>
+              <article class="item-noticia" data-tags="RECLAMO">
+                <img src="imagenes/imagen 3.png" alt="" class="img-ph img-ph--mini">
+                <div>
+                  <h3>Argentina rechaza el proyecto petrolero británico Sea Lion en las Islas Malvinas y advierte acciones legales</h3>
+                  <div class="meta"><span class="hashtag">#RECLAMO</span><span class="hora">Hace 10 minutos</span></div>
+                </div>
+              </article>
+              <article class="item-noticia" data-tags="RECLAMO">
+                <img src="imagenes/imagen 8.avif" alt="" class="img-ph img-ph--mini">
+                <div>
+                  <h3>Reclamo en Berazategui: vecinos se resisten a un desalojo en conflicto</h3>
+                  <div class="meta"><span class="hashtag">#RECLAMO</span><span class="hora">Hace 30 minutos</span></div>
+                </div>
+              </article>
+              <article class="item-noticia" data-tags="TARIFAS INFLACION">
+                <img src="imagenes/imagen 7.png" alt="" class="img-ph img-ph--mini">
+                <div>
+                  <h3>Suba de tarifas: cómo impactará en las facturas de luz y gas este mes</h3>
+                  <div class="meta"><span class="hashtag">#TARIFAS</span><span class="hora">Hace 10 minutos</span></div>
+                </div>
+              </article>
+              <article class="item-noticia" data-tags="GASPI">
+                <img src="imagenes/imagen 6.png" alt="" class="img-ph img-ph--mini">
+                <div>
+                  <h3>La estremecedora historia familiar de Gaspi y una frase sobre su mamá que emociona hasta las lágrimas</h3>
+                  <div class="meta"><span class="hashtag">#GASPI</span><span class="hora">Hace 5 minutos</span></div>
+                </div>
+              </article>
+              <article class="item-noticia" data-tags="GASPI">
+                <img src="imagenes/imagen 5.png" alt="" class="img-ph img-ph--mini">
+                <div>
+                  <h3>Cómo será el proceso para repatriar el cuerpo de Gaspi a la Argentina tras el accidente</h3>
+                  <div class="meta"><span class="hashtag">#GASPI</span><span class="hora">Hace 12 minutos</span></div>
+                </div>
+              </article>
+              <article class="item-noticia" data-tags="RECLAMO">
+                <img src="imagenes/imagen 4.png" alt="" class="img-ph img-ph--mini">
+                <div>
+                  <h3>Buscan a cinco pescadores que desaparecieron en una lancha en el Río de la Plata</h3>
+                  <div class="meta"><span class="hashtag">#RECLAMO</span><span class="hora">Hace 20 minutos</span></div>
+                </div>
+              </article>
+              <p class="instantes-vacio" hidden>No hay noticias recientes con ese filtro.</p>
+            </div>
+            <button class="carrusel-flecha siguiente" aria-label="Bajar">&#8595;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. PRIMICIAS DE LA SEMANA -->
+    <section class="contenedor">
+      <div class="seccion-encabezado">
+        <h2 class="titulo-seccion">Primicias de la semana</h2>
+        <a href="en-vivo.html" class="btn-vermas">Ver mas</a>
+      </div>
+      <div class="carrusel">
+        <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+        <div class="carrusel-pista">
+          <article class="card">
+            <img src="imagenes/imagen 9.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Se bajó del coche para pelear con un motociclista, se olvidó de poner el freno de mano y chocó al auto de atrás</h3>
+              <span class="hashtag">#ACCIDENTES</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/imagen 10.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Luego de tres años de conflicto, el Gobierno y las universidades firmaron un acuerdo por aumento de fondos y salarios</h3>
+              <span class="hashtag">#EDUCACIÓN</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/imagen 7.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Este jueves se conocerá la inflación de mayo: la estimación de las consultoras privadas</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/imagen 5.png" alt="">
+            <div class="card-cuerpo">
+              <h3>La estremecedora historia familiar de Gaspi y una verdad sobre su mamá que emociona hasta las lágrimas</h3>
+              <span class="hashtag">#GASPI</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/imagen 13.jfif" alt="">
+            <div class="card-cuerpo">
+              <h3>El dólar blue volvió a subir y marcó un nuevo récord: a cuánto cerró este viernes</h3>
+              <span class="hashtag">#DÓLAR</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/imagen 11.avif" alt="">
+            <div class="card-cuerpo">
+              <h3>Alerta meteorológica: anticipan una semana con fuertes vientos y descenso de temperatura</h3>
+              <span class="hashtag">#CLIMA</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/imagen 12.avif" alt="">
+            <div class="card-cuerpo">
+              <h3>El CONICET volvió a transmitir en vivo desde el fondo del mar y batió su propio récord de audiencia</h3>
+              <span class="hashtag">#CONICET</span>
+            </div>
+          </article>
+        </div>
+        <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- 4. TAPAS DE LA SEMANA -->
+    <section class="bloque-rojo">
+      <div class="contenedor">
+        <h2 class="titulo-seccion titulo-blanco">Tapas de la semana</h2>
+        <div class="carrusel">
+          <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+          <div class="carrusel-pista">
+            <img src="imagenes/Tapa1.webp" alt="" class="img-ph img-ph--tapa">
+            <img src="imagenes/Tapa2.webp" alt="" class="img-ph img-ph--tapa">
+            <img src="imagenes/Tapa3.webp" alt="" class="img-ph img-ph--tapa">
+            <img src="imagenes/Tapa4.webp" alt="" class="img-ph img-ph--tapa">
+
+          </div>
+          <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. POLICIALES + CLIPS (franja de títulos) -->
+    <section class="franja-doble">
+      <div class="contenedor franja-doble-grid">
+        <h2 class="titulo-blanco">Policiales</h2>
+        <div class="franja-doble-der">
+          <h2 class="titulo-blanco">Clips Policiales-Vivo</h2>
+          <a href="policiales.html" class="btn-vermas">Ver mas</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <div class="policiales-grid">
+        <article class="destacada-oscura col-min">
+           <img src="imagenes/policial 1.png" alt="" class="img-ph img-ph--media">
+          <div class="cuerpo">
+            <h3>El Gobierno le advirtió a los empresarios que "no apuesten a una devaluación para salvarse"</h3>
+            <span class="hashtag">#INFLACION</span>
+          </div>
+        </article>
+
+        <div class="col-min clips-col">
+          <div class="carrusel">
+            <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+            <div class="carrusel-pista">
+              <article class="card-clip">
+                 <div class="media-etiqueta">
+                   <img src="imagenes/policial 2.png" alt="" class="img-ph img-ph--clip">
+                   <span class="etiqueta-amarilla">DRAMÁTICO</span>
+                 </div>
+                <div class="card-cuerpo card-cuerpo--rojo">
+                  <h3>Rescataron a una mujer que era mantenida cautiva por un dealer de drogas</h3>
+                </div>
+              </article>
+              <article class="card-clip">
+                <div class="media-etiqueta">
+                   <img src="imagenes/policial 3.png" alt="" class="img-ph img-ph--clip">
+                   <span class="etiqueta-amarilla">PROCEDIMIENTO</span>
+                 </div>
+                <div class="card-cuerpo card-cuerpo--rojo">
+                  <h3>Apresaron al líder de una banda que hacía estafas virtuales operada desde la cárcel: cómo lo descubrieron</h3>
+                </div>
+              </article>
+              <article class="card-clip">
+                <div class="media-etiqueta">
+                   <img src="imagenes/policial 4.png" alt="" class="img-ph img-ph--clip">
+                   <span class="etiqueta-amarilla">TIROTEO</span>
+                 </div>
+                <div class="card-cuerpo card-cuerpo--rojo">
+                  <h3>Ladrón fue herido de bala por policías al ser sorprendido mientras fugaba en una moto robada</h3>
+                </div>
+              </article>
+            </div>
+            <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SEMANA POLICIAL -->
+    <section class="contenedor">
+      <div class="seccion-encabezado">
+        <h2 class="titulo-sub">Semana policial</h2>
+        <a href="#" class="btn-vermas">Ver mas</a>
+      </div>
+      <div class="carrusel">
+        <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+        <div class="carrusel-pista">
+          <article class="card card--oscura">
+            <img src="imagenes/policial 5.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Enterró 60 kilos de cocaína en el patio de su mamá: la mujer se desmayó en el operativo y él fue detenido</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </article>
+          <a href="noticia.html" class="card card--oscura card-enlace">
+           <img src="imagenes/policial 6.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Un pasajero le fracturó la mandíbula a golpes a un colectivero porque no le abrió la puerta para bajarse</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </a>
+          <article class="card card--oscura">
+            <img src="imagenes/policial 7.png" alt="">
+            <div class="card-cuerpo">
+              <h3>¡Video! Así rompió una vidriera a golpes para robar 300 mil pesos en pan y quesos</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </article>
+          <article class="card card--oscura">
+            <img src="imagenes/policial 8.png" alt="">
+            <div class="card-cuerpo">
+              <h3>En Mendoza, tomaron a una estudiante del cuello para someterla</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </article>
+          <article class="card card--oscura">
+            <img src="imagenes/policial 9.webp" alt="">
+            <div class="card-cuerpo">
+              <h3>Apresaron al líder de una banda que hacía estafas virtuales operada desde la cárcel: cómo lo descubrieron</h3>
+              <span class="hashtag">#PROCEDIMIENTO</span>
+            </div>
+          </article>
+          <article class="card card--oscura">
+           <img src="imagenes/policial 4.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Ladrón fue herido de bala por policías al ser sorprendido mientras fugaba en una moto robada</h3>
+              <span class="hashtag">#TIROTEO</span>
+            </div>
+          </article>
+          <article class="card card--oscura">
+            <img src="imagenes/policial 3.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Condenaron a un abuelo por abusar de su amigo: deberá cumplir 9 años y medio de prisión</h3>
+              <span class="hashtag">#JUSTICIA</span>
+            </div>
+          </article>
+        </div>
+        <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- 7. POLÍTICA -->
+    <section class="contenedor">
+      <div class="seccion-encabezado">
+        <h2 class="titulo-seccion">Política</h2>
+        <a href="#" class="btn-vermas">Ver mas</a>
+      </div>
+      <div class="fila-tags">
+        <a href="#">#INFLACIÓN</a>
+        <a href="#">#ADORNI</a>
+        <a href="#">#MILEI</a>
+        <a href="#">#CRISTINA</a>
+        <a href="#">#CONGRESO</a>
+        <a href="#">#FUERTE</a>
+        <a href="#">#DÍA DE LA BANDERA</a>
+      </div>
+      <div class="politica-grid">
+        <article class="destacada-oscura col-min">
+           <img src="imagenes/politica 1.png" alt="" class="img-ph img-ph--media">
+          <div class="cuerpo">
+            <h3>El Gobierno le advirtió a los empresarios que "no apuesten a una devaluación para salvarse"</h3>
+            <span class="hashtag">#INFLACION</span>
+          </div>
+        </article>
+        <div class="grilla-2x2 col-min">
+          <article class="mini-card">
+            <img src="imagenes/politica 2.png" alt="">
+            <h4>Nardini recibió a Magario y visitaron las obras del futuro Distrito Malvinas</h4>
+            <span class="hashtag">#MIRÁ</span>
+          </article>
+          <article class="mini-card">
+            <img src="imagenes/politica 3.png" alt="">
+            <h4>Victoria Villarruel: "No hay nadie más peleado con los valores de Belgrano que Adorni"</h4>
+            <span class="hashtag">#EL DÍA DE LA BANDERA</span>
+          </article>
+          <article class="mini-card">
+            <img src="imagenes/politica 4.png" alt="">
+            <h4>Comienza la gestión de Ravier: jura en Casa Rosada y acto con la Fundación Faro</h4>
+            <span class="hashtag">#AGENDA</span>
+          </article>
+          <article class="mini-card">
+            <img src="imagenes/politica 5.png" alt="">
+            <h4>Más dardos desde el PRO contra Adorni: "Mintió varias veces y tomó de bolud... a los argentinos"</h4>
+            <span class="hashtag">#FUERTE</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SEMANA POLÍTICA (carrusel de ítems imagen+texto) -->
+    <section class="contenedor">
+      <div class="seccion-encabezado">
+        <h2 class="titulo-sub">Semana política</h2>
+        <a href="#" class="btn-vermas">Ver mas</a>
+      </div>
+      <div class="carrusel">
+        <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+        <div class="carrusel-pista">
+          <article class="item-noticia item-noticia--ancho">
+             <img src="imagenes/politica 6.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Manuel Adorni recibió otro abrazo de Javier Milei en Rosario y charló unos minutos con Patricia Bullrich</h3>
+              <span class="hashtag">#GESTO</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/politica 7.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>"Belgrano donó su fortuna para hacer escuelas": Pullaro apuntó contra el enriquecimiento de Adorni en el acto en Rosario</h3>
+              <span class="hashtag">#DÍA DE LA BANDERA</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/politica 8.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Acto de Rosario: Victoria Villarruel desequilibró los esfuerzos de Javier Milei por Adorni y la unidad</h3>
+              <span class="hashtag">#FUERTE</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/politica 7.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Más apoyo a Cristina: diputados y senadores de Unión por la Patria respaldaron el "banderazo"</h3>
+              <span class="hashtag">#POSTURA</span>
+            </div>
+          </article>
+        </div>
+        <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- 9. SOCIEDAD (Diario Show + Social Noticias) -->
+    <section class="contenedor">
+      <div class="seccion-encabezado">
+        <h2 class="titulo-seccion">Sociedad</h2>
+        <a href="sociedad.html" class="btn-vermas">Ver mas</a>
+      </div>
+      <div class="fila-tags">
+        <a href="#">#INVIERNO</a>
+        <a href="#">#JUBILACIÓN</a>
+        <a href="#">#ANSES</a>
+        <a href="#">#CONICET</a>
+        <a href="#">#FENÓMENO</a>
+        <a href="#">#DÍA_DEL_PADRE</a>
+      </div>
+      <div class="sociedad-grid">
+        <!-- IZQUIERDA: Más en "Diario Show" -->
+        <div class="col-min diarioshow">
+          <div class="diarioshow-cabecera">
+            <span>MÁS EN "DIARIO SHOW"</span>
+            <a href="#" class="btn-vermas">Ver mas</a>
+          </div>
+          <article class="diarioshow-destacada">
+            <div class="diarioshow-foto">
+              <img src="imagenes/sociedad 1.png" alt="" class="img-ph img-ph--media2">
+              <span class="etiqueta-pavada">LA PAVADA</span>
+            </div>
+            <h3>El desopilante comentario de la hija de Maru Botana cuando le preguntaron si usaba apps de citas</h3>
+          </article>
+          <article class="item-noticia diarioshow-item">
+            <img src="imagenes/sociedad 7.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <span class="etiqueta-pavada">LA PAVADA</span>
+              <h3>Las "mesazas" confirmadas: cuáles son los invitados de Mirtha Legrand y Juana Viale para este fin de semana</h3>
+            </div>
+          </article>
+        </div>
+
+        <!-- DERECHA: Social Noticias (grilla 2x2) -->
+        <div class="col-min">
+          <h2 class="titulo-bloque">Social Noticias</h2>
+          <div class="grilla-2x2">
+            <article class="mini-card">
+             <img src="imagenes/sociedad 2.png" alt="">
+              <h4>Pronóstico del tiempo: vuelven las lluvias y tormentas a Buenos Aires, ¿en qué fecha?</h4>
+              <span class="hashtag">#CLIMA</span>
+            </article>
+            <article class="mini-card">
+              <img src="imagenes/sociedad 3.png" alt="">
+              <h4>La expedición científica del CONICET que paralizó a millones de argentinos vuelve al mar profundo con una nueva misión</h4>
+              <span class="hashtag">#CONICET</span>
+            </article>
+            <a class="mini-card" href="noticia-esvastica.html">
+              <img src="imagenes/sociedad 4.png" alt="">
+              <h4>Tenía baldosas con esvásticas en su casa: lo imputan por vender uniformes militares en redes sociales</h4>
+              <span class="hashtag">#ESVÁSTICA</span>
+            </a>
+            <article class="mini-card">
+              <img src="imagenes/sociedad 5.png" alt="">
+              <h4>Llegó la temporada más fría del año: ¿Qué es el solsticio de invierno?</h4>
+              <span class="hashtag">#FENÓMENO</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9B. SEMANA EN ARGENTINA (carrusel de ítems imagen+texto) -->
+    <section class="contenedor">
+      <div class="seccion-encabezado">
+        <h2 class="titulo-sub">Semana en Argentina</h2>
+        <a href="#" class="btn-vermas">Ver mas</a>
+      </div>
+      <div class="carrusel">
+        <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+        <div class="carrusel-pista">
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/sociedad 6.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>El pronóstico para el Día del Padre y la llegada del invierno: los datos del clima para hoy y la semana que viene</h3>
+              <span class="hashtag">#ATENCIÓN</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/sociedad 7.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Historias del Día del Padre: 3 hombres que lo dan todo por sus hijos</h3>
+              <span class="hashtag">#EMOCIONANTE</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/sociedad 8.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Jubilados de ANSES: después del feriado, ¿a quiénes les toca cobrar sus haberes de junio?</h3>
+              <span class="hashtag">#CRONOGRAMA</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/sociedad 4.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Línea F del subte: qué barrios conectará y cómo se llamarán las estaciones</h3>
+              <span class="hashtag">#ALUCINANTE</span>
+            </div>
+          </article>
+        </div>
+        <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- 10. OPINIÓN - CRÓNICA EN VIVO -->
+    <section class="opinion-vivo">
+      <div class="contenedor opinion-cabecera">
+        <h2 class="titulo-seccion titulo-blanco">Opinión - Crónica en vivo</h2>
+        <a href="en-vivo.html" class="btn-vermas">Ver mas</a>
+      </div>
+      <div class="contenedor">
+        <div class="carrusel">
+          <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+          <div class="carrusel-pista">
+            <article class="card-opinion">
+              <div class="media-etiqueta"><img src="imagenes/opinion 1.png" alt="" class="img-ph img-ph--opinion"><span class="etiqueta-amarilla">COBERTURA ESPECIAL</span></div>
+              <div class="card-cuerpo card-cuerpo--rojo">
+                <h3>Crónica llegó al Mundial 2026: así está el clima en Kansas antes del debut ...</h3>
+              </div>
+            </article>
+            <article class="card-opinion">
+             <div class="media-etiqueta"><img src="imagenes/opinion 2.png" alt="" class="img-ph img-ph--opinion"><span class="etiqueta-amarilla">BRUTAL CRIMEN</span></div>
+              <div class="card-cuerpo card-cuerpo--rojo">
+                <h3>Crónica llegó al Mundial 2026: así está el clima en Kansas antes del debut ...</h3>
+              </div>
+            </article>
+            <article class="card-opinion">
+             <div class="media-etiqueta"><img src="imagenes/opinion 3.png" alt="" class="img-ph img-ph--opinion"><span class="etiqueta-amarilla">EXCLUSIVO</span></div>
+              <div class="card-cuerpo card-cuerpo--rojo">
+                <h3>Crónica llegó al Mundial 2026: así está el clima en Kansas antes del debut ...</h3>
+              </div>
+            </article>
+            <article class="card-opinion">
+             <div class="media-etiqueta"><img src="imagenes/opinion 4.png" alt="" class="img-ph img-ph--opinion"><span class="etiqueta-amarilla">VIDEO</span></div>
+              <div class="card-cuerpo card-cuerpo--rojo">
+                <h3>Así se enteraba Mario Pergolini de la noticia en vivo: "El rock está de luto"</h3>
+              </div>
+            </article>
+            <article class="card-opinion">
+              <div class="media-etiqueta"><img src="imagenes/policial 2.png" alt="" class="img-ph img-ph--opinion"><span class="etiqueta-amarilla">DRAMÁTICO</span></div>
+              <div class="card-cuerpo card-cuerpo--rojo">
+                <h3>Rescataron a una mujer que era mantenida cautiva por un dealer de drogas...</h3>
+              </div>
+            </article>
+            <article class="card-opinion">
+              <div class="media-etiqueta"><img src="imagenes/opinion 5.jfif" alt="" class="img-ph img-ph--opinion"><span class="etiqueta-amarilla">IMPACTANTE</span></div>
+              <div class="card-cuerpo card-cuerpo--rojo">
+                <h3>El momento exacto en que un rayo cae a metros de un grupo de turistas en la montaña</h3>
+              </div>
+            </article>
+          </div>
+          <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. RELAX -->
+    <section class="contenedor">
+      <div class="seccion-encabezado">
+        <h2 class="titulo-seccion">Relax</h2>
+        <a href="#" class="btn-vermas">Ver mas</a>
+      </div>
+      <div class="fila-tags">
+        <a href="#">#MILANESAS</a>
+        <a href="#">#DIEGO_TORRES</a>
+        <a href="#">#ANTONELA</a>
+      </div>
+      <div class="carrusel">
+        <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+        <div class="carrusel-pista pista-relax">
+          <article class="card">
+            <img src="imagenes/relax 1.png" alt="">
+            <div class="card-cuerpo">
+              <h3>La receta infalible de queque fácil que estabas buscando</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/relax 2.png" alt="">
+            <div class="card-cuerpo">
+              <h3>El corte de cerdo rico y barato que es ideal para preparar milanesas, guisos y estofados</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/relax 3.png" alt="">
+            <div class="card-cuerpo">
+              <h3>La panelista apuntó contra el futbolista por la imagen íntima y aseguró que el mensaje fue directo para su exesposa</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </article>
+          <article class="card">
+           <img src="imagenes/relax 4.png" alt="">
+            <div class="card-cuerpo">
+              <h3>La emoción de Diego Torres al anunciar otro reencuentro con sus fans del Conurbano: "Soy un privilegiado"</h3>
+              <span class="hashtag">#INFLACION</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/sociedad 1.png" alt="">
+            <div class="card-cuerpo">
+              <h3>El detalle que alimenta el rumor de que la China Suárez quiere la vida de Wanda Nara</h3>
+              <span class="hashtag">#FARÁNDULA</span>
+            </div>
+          </article>
+          <article class="card">
+            <img src="imagenes/relax 1.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Cómo hacer pan casero sin amasado: la receta más fácil y económica para el finde</h3>
+              <span class="hashtag">#COCINA</span>
+            </div>
+          </article>
+          <article class="card">
+           <img src="imagenes/relax 3.png" alt="">
+            <div class="card-cuerpo">
+              <h3>Horóscopo de la semana: qué le espera a cada signo en el comienzo del invierno</h3>
+              <span class="hashtag">#ASTROLOGÍA</span>
+            </div>
+          </article>
+        </div>
+        <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- 12. MUNDO -->
+    <section class="mundo-cabecera">
+      <div class="contenedor seccion-encabezado">
+        <h2 class="titulo-seccion titulo-blanco">Mundo</h2>
+        <a href="#" class="btn-vermas">Ver mas</a>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <div class="fila-tags fila-tags--mundo">
+        <a href="#">#TENSIÓN EN IRÁN</a>
+        <a href="#">#IDA Y VUELTA</a>
+        <a href="#">#DIRECTO</a>
+        <a href="#">#ELECCIONES</a>
+        <a href="#">#EEUU VS IRÁN</a>
+      </div>
+      <div class="mundo-grid">
+        <!-- IZQUIERDA: destacada oscura -->
+        <article class="destacada-oscura col-min">
+         <img src="imagenes/mundo 1.png" alt="" class="img-ph img-ph--media">
+          <div class="cuerpo">
+            <h3>Meloni le respondió a Trump: "Lamento que no muestre la misma determinación con los enemigos"</h3>
+            <span class="hashtag">#IDA Y VUELTA</span>
+          </div>
+        </article>
+
+        <!-- DERECHA: lista gris con hashtags rojos en línea -->
+        <div class="col-min mundo-lista">
+          <a href="#" class="mundo-lista-item">
+            <span class="hashtag-inline">#¡POR LA PAZ!</span> Histórica cumbre entre Estados Unidos e Irán en Suiza en busca de un acuerdo
+          </a>
+          <a href="#" class="mundo-lista-item">
+            <span class="hashtag-inline">#DEFINICIÓN</span> Colombia elige presidente: lo que hay que saber de la segunda vuelta electoral
+          </a>
+          <a href="#" class="mundo-lista-item">
+            <span class="hashtag-inline">#DIRECTO</span> "Le deseo lo mejor": Trump afirmó que Keir Starmer va a renunciar como primer ministro
+          </a>
+          <a href="#" class="mundo-lista-item">
+            <span class="hashtag-inline">#TENSIÓN</span> Irán abandonó la negociación con Estados Unidos por las amenazas de Trump
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12B. PRIMICIAS MUNDIALES (carrusel imagen+texto) -->
+    <section class="contenedor">
+      <h2 class="titulo-sub">Primicias mundiales</h2>
+      <div class="carrusel">
+        <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+        <div class="carrusel-pista">
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/mundo 2.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Quién es Abelardo De la Espriella, el nuevo presidente electo en Colombia</h3>
+              <span class="hashtag">#ELECCIONES</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/mundo 3.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Seis personas murieron al estrellarse una avioneta en Bolivia</h3>
+              <span class="hashtag">#TRAGEDIA</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/mundo 4.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>De la Espriella se impone en un reñido balotaje y será el próximo presidente de Colombia</h3>
+              <span class="hashtag">#OFICIAL</span>
+            </div>
+          </article>
+          <article class="item-noticia item-noticia--ancho">
+            <img src="imagenes/mundo 1.png" alt="" class="img-ph img-ph--mini">
+            <div>
+              <h3>Elecciones presidenciales en Colombia: Iván Cepeda y Abelardo de la Espriella definen el balotaje</h3>
+              <span class="hashtag">#SEGUNDA VUELTA</span>
+            </div>
+          </article>
+        </div>
+        <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </section>
+
+<!-- 13. MEDIOS VINCULADOS -->
+    <section class="medios">
+      <div class="contenedor">
+        <h2 class="titulo-seccion titulo-blanco medios-titulo">Medios vinculados</h2>
+        <div class="carrusel">
+          <button class="carrusel-flecha anterior" aria-label="Anterior">&#8249;</button>
+          <div class="carrusel-pista">
+            <a href="#" class="pill pill--fmq"><img src="imagenes/logo medios 1.png" alt="FMQ" class="pill-logo" /></a>
+            <a href="#" class="pill pill--depo"><img src="imagenes/logo medios 2.png" alt="DEPO" class="pill-logo" /></a>
+            <a href="#" class="pill pill--diarioshow"><img src="imagenes/logo medios 3.png" alt="Diario Show" class="pill-logo" /></a>
+            <a href="#" class="pill pill--cm"><img src="imagenes/logo medios 4.png"CM Canal de la Música" class="pill-logo" /></a>
+            <a href="#" class="pill pill--generico"><img src="imagenes/logo medios 1.png" alt="Medio vinculado" class="pill-logo" /></a>
+          </div>
+          <button class="carrusel-flecha siguiente" aria-label="Siguiente">&#8250;</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 14. FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="contenedor footer-top-fila">
+        <a href="index.html" class="logo logo--footer">
+          <img src="imagenes/logo.png" alt="Crónica" class="logo-img" />
+        </a>
+        <div class="footer-seguinos">
+          <span>¡SEGUINOS!</span>
+          <div class="footer-redes">
+            <a href="#" class="red-roja" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.66l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+            <a href="#" class="red-roja" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.81 3.81 0 0 1-1.38-.9 3.81 3.81 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 4.38a5.3 5.3 0 1 0 0 10.6 5.3 5.3 0 0 0 0-10.6Zm0 1.62a3.68 3.68 0 1 1 0 7.36 3.68 3.68 0 0 1 0-7.36Zm5.5-2.86a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48Z"/></svg></a>
+            <a href="#" class="red-roja" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.5 6.5a3 3 0 0 0-2.1-2.13C19.5 3.85 12 3.85 12 3.85s-7.5 0-9.4.52A3 3 0 0 0 .5 6.5 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.5 3 3 0 0 0 2.1 2.13c1.9.52 9.4.52 9.4.52s7.5 0 9.4-.52a3 3 0 0 0 2.1-2.13A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.5ZM9.6 15.5v-7l6.2 3.5-6.2 3.5Z"/></svg></a>
+            <a href="#" class="red-roja" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M16.5 2h-3v13.5a3 3 0 1 1-2.4-2.94V9.5A6 6 0 1 0 16.5 15.5V8.9a7.5 7.5 0 0 0 4.5 1.5V7.4a4.5 4.5 0 0 1-4.5-4.5V2Z"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-principal">
+      <div class="contenedor footer-cols">
+        <div class="footer-tematicas">
+          <h4>Temáticas</h4>
+          <div class="tematicas-grid">
+            <ul>
+              <li><a href="#">Policiales</a></li>
+              <li><a href="#">Política</a></li>
+              <li><a href="#">Paranormal</a></li>
+              <li><a href="#">Salud</a></li>
+              <li><a href="#">Tecnología</a></li>
+              <li><a href="#">Opinión</a></li>
+              <li><a href="#">Sociedad</a></li>
+              <li><a href="#">Cine y Series</a></li>
+              <li><a href="#">Números y Destino</a></li>
+            </ul>
+            <ul>
+              <li><a href="#">Cocina</a></li>
+              <li><a href="#">Cosa de Locos</a></li>
+              <li><a href="#">Viajes y Escapadas</a></li>
+              <li><a href="#">Videos</a></li>
+              <li><a href="#">Horóscopo</a></li>
+              <li><a href="#">Santoral</a></li>
+              <li><a href="#">Efemérides</a></li>
+              <li><a href="#">Loterías y Quiniela</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <ul class="footer-medios">
+          <li><a href="#">Crónica</a></li>
+          <li><a href="#">Crónica TV</a></li>
+          <li><a href="#">Diario Show</a></li>
+          <li><a href="#">BAE Negocios</a></li>
+          <li><a href="#">Revista Veititrés</a></li>
+          <li><a href="#">La Opinión Austral</a></li>
+          <li><a href="#">FMQ</a></li>
+          <li><a href="#">CM Canal de la Música</a></li>
+          <li><a href="#">Canal 10 de Mar del Plata</a></li>
+          <li><a href="#">Diario Crónica</a></li>
+          <li><a href="#">Mendoza Today</a></li>
+        </ul>
+      </div>
+
+      <div class="contenedor footer-legal">
+        <div class="footer-grupo"><strong>Grupo Crónica</strong></div>
+        <div class="footer-datos">
+          <p>Editorial Aconcagua Argentina S.A. es licenciataria del Diario Crónica.<br>
+             Director: Marcelo Carbone<br>
+             Registro de Propiedad Intelectual Nro. 06186348<br>
+             Copyright 2026 - Grupo Crónica - Todos los derechos reservados<br>
+             Edición N° 6.622 - 21/06/2026</p>
+        </div>
+        <div class="footer-datos">
+          <p><strong>Redacción</strong><br>
+             Director periodístico: Florencia Guerrero<br>
+             Av. Juan de Garay 140, Capital Federal, Argentina<br>
+             Tel: +54 11 5263-8650<br>
+             cronicaweb@grupocronica.com.ar</p>
+        </div>
+        <div class="footer-datos">
+          <p><strong>Departamento Comercial</strong><br>
+             Tel: +54 11 4417-6704<br>
+             departamentocomercial@grupocronica.com.ar<br>
+             Mediakit</p>
+          <p><strong>Contacto</strong><br>
+             Términos y condiciones<br>
+             Políticas de privacidad</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
